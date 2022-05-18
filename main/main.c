@@ -22,7 +22,7 @@ void tx_task(void *pvParameter)
 
 		char radiopacket[64] = "Hello World #";
 		sprintf(radiopacket, "Hello World #%d", packetnum++);
-		ESP_LOGI(TAG, "Sending %s", radiopacket);
+		ESP_LOGI(pcTaskGetName(0), "Sending %s", radiopacket);
   
 		// Send a message!
 		send((uint8_t *)radiopacket, strlen(radiopacket));
@@ -35,12 +35,12 @@ void tx_task(void *pvParameter)
 		if (waitAvailableTimeout(500))	{
 			// Should be a reply message for us now   
 			if (recv(buf, &len)) {
-				ESP_LOGI(TAG, "Got a reply: %s", (char*)buf);
+				ESP_LOGI(pcTaskGetName(0), "Got a reply: %s", (char*)buf);
 			} else {
-				ESP_LOGE(TAG, "Receive failed");
+				ESP_LOGE(pcTaskGetName(0), "Receive failed");
 			}
 		} else {
-			ESP_LOGE(TAG, "No reply, is another RFM69 listening?");
+			ESP_LOGE(pcTaskGetName(0), "No reply, is another RFM69 listening?");
 		}
 		vTaskDelay(1000/portTICK_PERIOD_MS);
 	} // end while
@@ -64,18 +64,18 @@ void rx_task(void *pvParameter)
 			if (recv(buf, &len)) {
 				if (!len) continue;
 				buf[len] = 0;
-				ESP_LOGI(TAG, "Received [%d]:%s", len, (char*)buf);
-				ESP_LOGI(TAG, "RSSI: %d", lastRssi());
+				ESP_LOGI(pcTaskGetName(0), "Received [%d]:%s", len, (char*)buf);
+				ESP_LOGI(pcTaskGetName(0), "RSSI: %d", lastRssi());
 
 				if (strstr((char *)buf, "Hello World")) {
 					// Send a reply!
 					uint8_t data[] = "And hello back to you";
 					send(data, sizeof(data));
 					waitPacketSent();
-					ESP_LOGI(TAG, "Sent a reply");
+					ESP_LOGI(pcTaskGetName(0), "Sent a reply");
 				}
 			} else {
-				ESP_LOGE(TAG, "Receive failed");
+				ESP_LOGE(pcTaskGetName(0), "Receive failed");
 			} // end recv
 		} // end available
 		vTaskDelay(1);
