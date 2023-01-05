@@ -4,16 +4,16 @@ menu "RF69 Configuration"
 		int
 		default 33 if IDF_TARGET_ESP32
 		default 46 if IDF_TARGET_ESP32S2
-		default 19 if IDF_TARGET_ESP32C3
 		default 48 if IDF_TARGET_ESP32S3
+		default 18 if IDF_TARGET_ESP32C2
+		default 19 if IDF_TARGET_ESP32C3
 
 	config MISO_GPIO
 		int "RF69 MISO GPIO"
 		range 0 GPIO_RANGE_MAX
 		default 19 if IDF_TARGET_ESP32
-		default 37 if IDF_TARGET_ESP32S2
-		default 37 if IDF_TARGET_ESP32S3
-		default 18 if IDF_TARGET_ESP32C3
+		default 37 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+		default  4 if IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C2
 		help
 			Pin Number to be used as the MISO SPI signal.
 
@@ -21,9 +21,8 @@ menu "RF69 Configuration"
 		int "RF69 SCK GPIO"
 		range 0 GPIO_RANGE_MAX
 		default 18 if IDF_TARGET_ESP32
-		default 36 if IDF_TARGET_ESP32S2
-		default 36 if IDF_TARGET_ESP32S3
-		default 10 if IDF_TARGET_ESP32C3
+		default 36 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+		default  5 if IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C2
 		help
 			Pin Number to be used as the SCK SPI signal.
 
@@ -31,19 +30,17 @@ menu "RF69 Configuration"
 		int "RF69 MOSI GPIO"
 		range 0 GPIO_RANGE_MAX
 		default 23 if IDF_TARGET_ESP32
-		default 35 if IDF_TARGET_ESP32S2
-		default 35 if IDF_TARGET_ESP32S3
-		default 19 if IDF_TARGET_ESP32C3
+		default 35 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+		default  6 if IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C2
 		help
 			Pin Number to be used as the MOSI SPI signal.
 
-	config CSN_GPIO
-		int "RF69 CSN GPIO"
+	config NSS_GPIO
+		int "RF69 NSS GPIO"
 		range 0 GPIO_RANGE_MAX
-		default 5  if IDF_TARGET_ESP32
-		default 34 if IDF_TARGET_ESP32S2
-		default 34 if IDF_TARGET_ESP32S3
-		default 9  if IDF_TARGET_ESP32C3
+		default  5 if IDF_TARGET_ESP32
+		default 34 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+		default  7 if IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C2
 		help
 			Pin Number to be used as the CSN SPI signal.
 
@@ -51,9 +48,8 @@ menu "RF69 Configuration"
 		int "RF69 RESTE GPIO"
 		range 0 GPIO_RANGE_MAX
 		default 16 if IDF_TARGET_ESP32
-		default 38 if IDF_TARGET_ESP32S2
-		default 38 if IDF_TARGET_ESP32S3
-		default 8  if IDF_TARGET_ESP32C3
+		default 38 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+		default  3 if IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C2
 		help
 			Pin Number to be used as the RESET signal.
 
@@ -67,6 +63,7 @@ menu "RF69 Configuration"
 			help
 				Use SPI2_HOST. This is also called HSPI_HOST.
 		config SPI3_HOST
+			depends on IDF_TARGET_ESP32 || IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
 			bool "SPI3_HOST"
 			help
 				USE SPI3_HOST. This is also called VSPI_HOST
@@ -88,7 +85,7 @@ menu "RF69 Configuration"
 	endchoice
 
 	config RF69_POWER_HIGH
-		bool "Set TX power high(RFM69WH/RFM69HCW)"
+		bool "Set TX power high(RFM69HW/RFM69HCW)"
 		default y
 		help
 			If you are using a high power RF69 such as the RFM69HW, you must to set the TX power high.

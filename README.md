@@ -8,15 +8,15 @@ I tested with these.
 ![RFM69-12](https://user-images.githubusercontent.com/6020549/168982527-f090f229-dfec-4473-8e0b-9a5d4d77d742.JPG)
 
 # Software requirements
-esp-idf v4.4 or later.   
-This is because this version supports ESP32-C3.   
+ESP-IDF V4.4/V5.0.   
+ESP-IDF V5 is required when using ESP32-C2.   
 
 # Installation
 
 ```Shell
 git clone https://github.com/nopnop2002/esp-idf-rf69
 cd esp-idf-rf69
-idf.py set-target {esp32/esp32s2/esp32s3/esp32c3}
+idf.py set-target {esp32/esp32s2/esp32s3/esp32c2/esp32c3}
 idf.py menuconfig
 idf.py flash
 ```
@@ -29,7 +29,7 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 
 # Configuration for Transceiver   
 ![config-rf69-1](https://user-images.githubusercontent.com/6020549/168982654-f570bf49-1e23-4c82-a477-bb6cb9efb685.jpg)
-![config-rf69-2](https://user-images.githubusercontent.com/6020549/168986730-2358a957-6d63-4cf7-8f84-020cb33f29ed.jpg)
+![config-rf69-2](https://user-images.githubusercontent.com/6020549/210901663-fbbc2f25-1c17-4192-b35b-c921aba8389d.jpg)
 
 - Set TX power higt   
  If you are using a high power RF69 such as the RFM69HW/RFM69HCW, you __must__ to set the TX power high.   
@@ -54,13 +54,13 @@ Previously it was called HSPI_HOST / VSPI_HOST, but now it is called SPI2_HOST /
 
 # Wirering
 
-|RFM69||ESP32|ESP32-S2/S3|ESP32-C3|
+|RFM69||ESP32|ESP32-S2/S3|ESP32-C2/C3|
 |:-:|:-:|:-:|:-:|:-:|
-|MISO|--|GPIO19|GPIO37|GPIO18|
-|SCK|--|GPIO18|GPIO36|GPIO10|
-|MOSI|--|GPIO23|GPIO35|GPIO19|
-|CSN|--|GPIO5|GPIO34|GPIO9|
-|RESET|--|GPIO16|GPIO38|GPIO8|
+|MISO|--|GPIO19|GPIO37|GPIO4|
+|SCK|--|GPIO18|GPIO36|GPIO5|
+|MOSI|--|GPIO23|GPIO35|GPIO6|
+|NSS|--|GPIO5|GPIO34|GPIO7|
+|RESET|--|GPIO16|GPIO38|GPIO3|
 |GND|--|GND|GND|GND|
 |VCC|--|3.3V|3.3V|3.3V|
 
