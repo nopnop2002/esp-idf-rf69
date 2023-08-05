@@ -197,9 +197,9 @@ static spi_device_handle_t _handle;
 #define millis() xTaskGetTickCount()*portTICK_PERIOD_MS
 
 void spi_init() {
-	gpio_reset_pin(CONFIG_CSN_GPIO);
-	gpio_set_direction(CONFIG_CSN_GPIO, GPIO_MODE_OUTPUT);
-	gpio_set_level(CONFIG_CSN_GPIO, 1);
+	gpio_reset_pin(CONFIG_NSS_GPIO);
+	gpio_set_direction(CONFIG_NSS_GPIO, GPIO_MODE_OUTPUT);
+	gpio_set_level(CONFIG_NSS_GPIO, 1);
 
 	spi_bus_config_t buscfg = {
 		.sclk_io_num = CONFIG_SCK_GPIO, // set SPI CLK pin
@@ -248,40 +248,40 @@ uint8_t spi_transfer(uint8_t address)
 uint8_t spiRead(uint8_t reg)
 {
 	uint8_t val;
-	gpio_set_level(CONFIG_CSN_GPIO, LOW);
+	gpio_set_level(CONFIG_NSS_GPIO, LOW);
 	spi_transfer(reg & ~RH_RF69_SPI_WRITE_MASK); // Send the address with the write mask off
 	val = spi_transfer(0); // The written value is ignored, reg value is read
-	gpio_set_level(CONFIG_CSN_GPIO, HIGH);
+	gpio_set_level(CONFIG_NSS_GPIO, HIGH);
 	return val;
 }
 
 uint8_t spiWrite(uint8_t reg, uint8_t val)
 {
 	uint8_t status = 0;
-	gpio_set_level(CONFIG_CSN_GPIO, LOW);
+	gpio_set_level(CONFIG_NSS_GPIO, LOW);
 	status = spi_transfer(reg | RH_RF69_SPI_WRITE_MASK); // Send the address with the write mask on
 	spi_transfer(val); // New value follows
-	gpio_set_level(CONFIG_CSN_GPIO, HIGH);
+	gpio_set_level(CONFIG_NSS_GPIO, HIGH);
 	return status;
 }
 
 uint8_t spiBurstRead(uint8_t reg, uint8_t* dest, uint8_t len)
 {
 	uint8_t status = 0;
-	gpio_set_level(CONFIG_CSN_GPIO, LOW);
+	gpio_set_level(CONFIG_NSS_GPIO, LOW);
 	status = spi_transfer(reg & ~RH_RF69_SPI_WRITE_MASK); // Send the start address with the write mask off
 	while (len--) *dest++ = spi_transfer(0);
-	gpio_set_level(CONFIG_CSN_GPIO, HIGH);
+	gpio_set_level(CONFIG_NSS_GPIO, HIGH);
 	return status;
 }
 
 uint8_t spiBurstWrite(uint8_t reg, const uint8_t* src, uint8_t len)
 {
 	uint8_t status = 0;
-	gpio_set_level(CONFIG_CSN_GPIO, LOW);
+	gpio_set_level(CONFIG_NSS_GPIO, LOW);
 	status = spi_transfer(reg | RH_RF69_SPI_WRITE_MASK); // Send the start address with the write mask on
 	while (len--) spi_transfer(*src++);
-	gpio_set_level(CONFIG_CSN_GPIO, HIGH);
+	gpio_set_level(CONFIG_NSS_GPIO, HIGH);
 	return status;
 }
 
@@ -363,7 +363,7 @@ bool init()
 // Performance issue?
 void readFifo()
 {
-	gpio_set_level(CONFIG_CSN_GPIO, LOW);
+	gpio_set_level(CONFIG_NSS_GPIO, LOW);
 	spi_transfer(RH_RF69_REG_00_FIFO); // Send the start address with the write mask off
 	uint8_t payloadlen = spi_transfer(0); // First byte is payload len (counting the headers)
 	if (payloadlen <= RH_RF69_MAX_ENCRYPTABLE_PAYLOAD_LEN &&
@@ -386,7 +386,7 @@ void readFifo()
 		_rxBufValid = true;
 	}
 	}
-	gpio_set_level(CONFIG_CSN_GPIO, HIGH);
+	gpio_set_level(CONFIG_NSS_GPIO, HIGH);
 	// Any junk remaining in the FIFO will be cleared next time we go to receive mode.
 }
 
@@ -700,7 +700,7 @@ bool send(const uint8_t* data, uint8_t len)
 	ESP_LOGD(TAG, "_txHeaderId=%d", _txHeaderId);
 	ESP_LOGD(TAG, "_txHeaderFlags=%d", _txHeaderFlags);
 
-	gpio_set_level(CONFIG_CSN_GPIO, LOW);
+	gpio_set_level(CONFIG_NSS_GPIO, LOW);
 	spi_transfer(RH_RF69_REG_00_FIFO | RH_RF69_SPI_WRITE_MASK); // Send the start address with the write mask on
 	spi_transfer(len + RH_RF69_HEADER_LEN); // Include length of headers
 
@@ -711,7 +711,7 @@ bool send(const uint8_t* data, uint8_t len)
 	// Now the payload
 	while (len--)
 	spi_transfer(*data++);
-	gpio_set_level(CONFIG_CSN_GPIO, HIGH);
+	gpio_set_level(CONFIG_NSS_GPIO, HIGH);
 
 	setModeTx(); // Start the transmitter
 	vTaskDelay(1);
