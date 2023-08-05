@@ -31,7 +31,7 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 ![config-rf69-1](https://user-images.githubusercontent.com/6020549/168982654-f570bf49-1e23-4c82-a477-bb6cb9efb685.jpg)
 ![config-rf69-2](https://user-images.githubusercontent.com/6020549/168986730-2358a957-6d63-4cf7-8f84-020cb33f29ed.jpg)
 
-- Set TX power higt   
+- Set TX power high   
  If you are using a high power RF69 such as the RFM69HW/RFM69HCW, you __must__ to set the TX power high.   
  If you are using a not high power RF69 such as the RFM6W/RFM69CW, you don't need to set the TX power high.   
 
@@ -86,7 +86,7 @@ http://www.airspayce.com/mikem/arduino/RadioHead/classRH__RF69.html
 
 Interrupts are not used in this project.
 
-# Arduino Environment
+# Communication with Arduino Environment
 I used these example.
 
 https://github.com/adafruit/RadioHead/tree/master/examples/feather/RadioHead69_RawDemo_RX
