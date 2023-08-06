@@ -10,13 +10,14 @@ I tested with these.
 # Software requirements
 ESP-IDF V4.4/V5.0.   
 ESP-IDF V5.0 is required when using ESP32-C2.   
+ESP-IDF V5.1 is required when using ESP32-C6.   
 
 # Installation
 
 ```Shell
 git clone https://github.com/nopnop2002/esp-idf-rf69
 cd esp-idf-rf69
-idf.py set-target {esp32/esp32s2/esp32s3/esp32c2/esp32c3}
+idf.py set-target {esp32/esp32s2/esp32s3/esp32c2/esp32c3/esp32c6}
 idf.py menuconfig
 idf.py flash
 ```
@@ -54,19 +55,19 @@ Previously it was called HSPI_HOST / VSPI_HOST, but now it is called SPI2_HOST /
 
 # Wirering
 
-|RFM69||ESP32|ESP32-S2/S3|ESP32-C2/C3|
+|RFM69||ESP32|ESP32-S2/S3|ESP32-C2/C3/C6|
 |:-:|:-:|:-:|:-:|:-:|
 |MISO|--|GPIO19|GPIO37|GPIO4|
-|SCK|--|GPIO18|GPIO36|GPIO5|
-|MOSI|--|GPIO23|GPIO35|GPIO6|
-|NSS|--|GPIO5|GPIO34|GPIO7|
-|RESET|--|GPIO16|GPIO38|GPIO3|
+|SCK|--|GPIO18|GPIO36|GPIO3|
+|MOSI|--|GPIO23|GPIO35|GPIO2|
+|NSS|--|GPIO5|GPIO34|GPIO1|
+|RESET|--|GPIO16|GPIO38|GPIO0|
 |GND|--|GND|GND|GND|
 |VCC|--|3.3V|3.3V|3.3V|
 
 __You can change it to any pin using menuconfig.__   
 
-__Pin out is different for each model.__   
+__The pinout of RFM69 is different for each model.__   
 
 
 # Foot pattern
@@ -93,6 +94,21 @@ https://github.com/adafruit/RadioHead/tree/master/examples/feather/RadioHead69_R
 
 https://github.com/adafruit/RadioHead/tree/master/examples/feather/RadioHead69_RawDemo_TX
 
+Wireing for ATmega328   
+```
+  #define RFM69_CS      4  // to NSS
+  #define RFM69_INT     3  // to DIO0
+  #define RFM69_RST     2  // to RESET
+  #define LED           13
+```
+
+Wireung for ESP8266   
+```
+  #define RFM69_CS      2  // to NSS
+  #define RFM69_INT     15 // to DIO0
+  #define RFM69_RST     16 // to RESET
+  #define LED           0
+```
 
 # Screen Shot
 ![ScreenShot](https://user-images.githubusercontent.com/6020549/168998608-ec658a7a-c4f5-4917-bc13-fe72002b1d34.jpg)
