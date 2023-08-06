@@ -102,7 +102,7 @@ Wireing for ATmega328
   #define LED           13
 ```
 
-Wireung for ESP8266   
+Wireing for ESP8266   
 ```
   #define RFM69_CS      2  // to NSS
   #define RFM69_INT     15 // to DIO0
