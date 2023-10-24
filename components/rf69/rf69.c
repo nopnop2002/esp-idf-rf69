@@ -292,11 +292,14 @@ void setIdleMode(uint8_t idleMode)
 
 bool init()
 {
+
 	// manual reset
+	ESP_LOGW(TAG, "Pull high for 100 milliseconds to reset");
+	gpio_set_direction(CONFIG_RST_GPIO, GPIO_MODE_OUTPUT);
 	gpio_set_level(CONFIG_RST_GPIO, HIGH);
-	delay(10);
+	delay(100);
 	gpio_set_level(CONFIG_RST_GPIO, LOW);
-	delay(10);
+	delay(100);
 
 	_idleMode = RH_RF69_OPMODE_MODE_STDBY;
 
