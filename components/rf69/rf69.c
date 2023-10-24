@@ -293,10 +293,12 @@ void setIdleMode(uint8_t idleMode)
 bool init()
 {
 	// manual reset
+	gpio_reset_pin(CONFIG_RST_GPIO);
+	gpio_set_direction(CONFIG_RST_GPIO, GPIO_MODE_OUTPUT);
 	gpio_set_level(CONFIG_RST_GPIO, HIGH);
-	delay(10);
+	delay(100);
 	gpio_set_level(CONFIG_RST_GPIO, LOW);
-	delay(10);
+	delay(100);
 
 	_idleMode = RH_RF69_OPMODE_MODE_STDBY;
 
