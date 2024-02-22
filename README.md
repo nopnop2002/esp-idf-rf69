@@ -8,7 +8,7 @@ I tested with these.
 ![RFM69-12](https://user-images.githubusercontent.com/6020549/168982527-f090f229-dfec-4473-8e0b-9a5d4d77d742.JPG)
 
 # Software requirements
-ESP-IDF V4.4/V5.0.   
+ESP-IDF V4.4/V5.x.   
 ESP-IDF V5.0 is required when using ESP32-C2.   
 ESP-IDF V5.1 is required when using ESP32-C6.   
 
