@@ -4,6 +4,8 @@ RFM69 ISM Transceiver driver for esp-idf.
 I ported from [this](http://www.airspayce.com/mikem/arduino/RadioHead/).
 
 I tested with these.   
+RFM69W/RFM69CW has +13 dBm Power Output Capability.   
+RFM69HW/RFM69HCW has +20 dBm Power Output Capability.   
 ![RFM69-3](https://user-images.githubusercontent.com/6020549/168982514-439e93a1-5633-4cf2-9c99-8490e38107f5.JPG)
 ![RFM69-12](https://user-images.githubusercontent.com/6020549/168982527-f090f229-dfec-4473-8e0b-9a5d4d77d742.JPG)
 
