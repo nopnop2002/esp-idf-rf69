@@ -7,29 +7,16 @@ I tested with these.
 ![RFM69-3](https://user-images.githubusercontent.com/6020549/168982514-439e93a1-5633-4cf2-9c99-8490e38107f5.JPG)
 ![RFM69-12](https://user-images.githubusercontent.com/6020549/168982527-f090f229-dfec-4473-8e0b-9a5d4d77d742.JPG)
 
-# Foot pattern
-RFM69CW/HCW has the same foot pattern as ESP12.   
-Therefore, a pitch conversion PCB for ESP12 can be used.   
-
-![RFM69CW](https://user-images.githubusercontent.com/6020549/168983702-3d0e8cac-add8-4906-bbfe-22eeee576ff7.JPG)
-![RFM69HCW](https://user-images.githubusercontent.com/6020549/168983707-4bb3170a-47ae-4225-b87a-3fc5cc2c07ab.JPG)
-
-RFM69W/HW does not have the same foot pattern as ESP12.
-
-![RFM69HW](https://user-images.githubusercontent.com/6020549/168983973-73f21359-21f3-4833-a7ff-dc329faa504f.JPG)
-![RFM69W](https://user-images.githubusercontent.com/6020549/168983977-bedada69-5722-46fb-839e-37ec77cc2b26.JPG)
-
-
 # Software requirements
-ESP-IDF V5.0 or later.   
-ESP-IDF V4.4 release branch reached EOL in July 2024.   
+ESP-IDF V4.4/V5.x.   
+ESP-IDF V5.0 is required when using ESP32-C2.   
 ESP-IDF V5.1 is required when using ESP32-C6.   
 
 # Installation
 
 ```Shell
 git clone https://github.com/nopnop2002/esp-idf-rf69
-cd esp-idf-rf69/basic
+cd esp-idf-rf69
 idf.py set-target {esp32/esp32s2/esp32s3/esp32c2/esp32c3/esp32c6}
 idf.py menuconfig
 idf.py flash
@@ -61,6 +48,11 @@ When using this module at the same time as SDSPI or other SPI device using SPI2_
 When you don't use SDSPI, both SPI2_HOST and SPI3_HOST will work.   
 Previously it was called HSPI_HOST / VSPI_HOST, but now it is called SPI2_HOST / SPI3_HOST.   
 
+# Configuration for Application
+![config-app-1](https://user-images.githubusercontent.com/6020549/168983261-c258d86b-09dc-4d4f-88dd-f4510c8b8280.jpg)
+![config-app-2](https://user-images.githubusercontent.com/6020549/168983269-27c78b4f-794c-4a83-9b3c-357bf17d6607.jpg)
+
+
 # Wirering
 
 |RFM69||ESP32|ESP32-S2/S3|ESP32-C2/C3/C6|
@@ -78,9 +70,36 @@ __You can change it to any pin using menuconfig.__
 __The pinout of RFM69 is different for each model.__   
 
 
+# Foot pattern
+RFM69CW/HCW has the same foot pattern as ESP12.   
+Therefore, a pitch conversion PCB for ESP12 can be used.   
+
+![RFM69CW](https://user-images.githubusercontent.com/6020549/168983702-3d0e8cac-add8-4906-bbfe-22eeee576ff7.JPG)
+![RFM69HCW](https://user-images.githubusercontent.com/6020549/168983707-4bb3170a-47ae-4225-b87a-3fc5cc2c07ab.JPG)
+
+RFM69W/HW does not have the same foot pattern as ESP12.
+
+![RFM69HW](https://user-images.githubusercontent.com/6020549/168983973-73f21359-21f3-4833-a7ff-dc329faa504f.JPG)
+![RFM69W](https://user-images.githubusercontent.com/6020549/168983977-bedada69-5722-46fb-839e-37ec77cc2b26.JPG)
+
 # API
 http://www.airspayce.com/mikem/arduino/RadioHead/classRH__RF69.html   
 
 Interrupts are not used in this project.
+
+# Communication with Arduino Environment
+I used [this](https://github.com/adafruit/RadioHead) library.   
+
+Wireing   
+|RFM69||ATmega328|ESP8266|
+|:-:|:-:|:-:|:-:|
+|MISO|--|GPIO12|GPIO12|
+|SCK|--|GPIO13|GPIO14|
+|MOSI|--|GPIO11|GPIO13|
+|NSS|--|GPIO4|GPIO2|
+|DIO0|--|GPIO3|GPIO15|
+|RESET|--|GPIO2|GPIO16|
+|GND|--|GND|GND|
+|VCC|--|3.3V|3.3V|
 
 
