@@ -83,4 +83,15 @@ http://www.airspayce.com/mikem/arduino/RadioHead/classRH__RF69.html
 
 Interrupts are not used in this project.
 
+# Comparison of RF96 and cc1101
+||RF96|cc1101|
+|:-:|:-:|:-:|
+|Manufacturer|HOPE MICROELECTRONICS|Texas Instrument|
+|Frequency|315/433/868/915MHz|315/433/868/915MHz|
+|Maximum Payload|64Byte(AES Enable)/255Byte(AES Disable)|64Byte|
+|CRC Length|16bits|16bits|
+|Acknowledgement Payload|No|No|
+|Available Modulation format|FSK/OOK|2-FSK/4-FSK/GFSK/ASK/OOK/MSK|
 
+AES is AES encryption/decryption.   
+This project uses AES.  
