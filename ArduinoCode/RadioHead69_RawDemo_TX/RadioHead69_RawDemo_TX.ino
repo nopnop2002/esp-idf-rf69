@@ -156,7 +156,6 @@ void loop() {
     Serial.println("No reply, is another RFM69 listening?");
   }
 #endif
-  
 }
 
 void Blink(byte PIN, byte DELAY_MS, byte loops) {

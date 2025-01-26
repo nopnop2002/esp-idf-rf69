@@ -154,10 +154,10 @@ void loop() {
         Serial.println("Sent a reply");
         Blink(LED, 40, 3); //blink LED 3 times, 40ms between blinks
       }
+#endif
     } else {
       Serial.println("Receive failed");
     }
-#endif
   }
 }
 
