@@ -11,7 +11,7 @@ This is RF69 and WebSocket gateway application.
             |           |           |           |           |           |
 ==(Radio)==>|    RF69   |--(SPI)--->|   ESP32   |-(Socket)->| WS Server |
             |           |           |           |           |           |
-            +-----------+           +-----------+           +-----------+```
+            +-----------+           +-----------+           +-----------+
 ```
 
 
