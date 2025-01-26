@@ -94,4 +94,4 @@ Interrupts are not used in this project.
 |Available Modulation format|FSK/GFSK/MSK/GMSJ/OOK|2-FSK/4-FSK/GFSK/ASK/OOK/MSK|
 
 AES is AES-128 encryption/decryption.   
-This project uses AES-128 encryption/decryption.  
+This project uses AES-128 encryption/decryption option.  
