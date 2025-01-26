@@ -1,8 +1,10 @@
-/* The example of ESP-IDF
+/* The example of RF69
  *
  * This sample code is in the public domain.
  */
 
+#include <stdio.h>
+#include <inttypes.h>
 #include <string.h>
 
 #include "freertos/FreeRTOS.h"
@@ -13,7 +15,7 @@
 
 static const char *TAG = "MAIN";
 
-#if CONFIG_TRANSMITTER
+#if CONFIG_PRIMARY
 void tx_task(void *pvParameter)
 {
 	ESP_LOGI(pcTaskGetName(0), "Start");
@@ -48,9 +50,9 @@ void tx_task(void *pvParameter)
 	// never reach here
 	vTaskDelete( NULL );
 }
-#endif // CONFIG_TRANSMITTER
+#endif // CONFIG_PRIMARY
 
-#if CONFIG_RECEIVER
+#if CONFIG_SECONDARY
 void rx_task(void *pvParameter)
 {
 	ESP_LOGI(pcTaskGetName(0), "Start");
@@ -84,10 +86,11 @@ void rx_task(void *pvParameter)
 	// never reach here
 	vTaskDelete( NULL );
 }
-#endif // CONFIG_RECEIVER
+#endif // CONFIG_SECONDARY
 
 void app_main()
 {
+	// Initialize Radio
 	if (!init()) {
 		ESP_LOGE(TAG, "RFM69 radio init failed");
 		while (1) { vTaskDelay(1); }
@@ -126,10 +129,10 @@ void app_main()
 		0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
 	setEncryptionKey(key);
 
-#if CONFIG_TRANSMITTER
+#if CONFIG_PRIMARY
 	xTaskCreate(&tx_task, "TX", 1024*3, NULL, 5, NULL);
 #endif
-#if CONFIG_RECEIVER
+#if CONFIG_SECONDARY
 	xTaskCreate(&rx_task, "RX", 1024*3, NULL, 5, NULL);
 #endif
 }
