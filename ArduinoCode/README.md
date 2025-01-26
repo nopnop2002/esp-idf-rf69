@@ -4,11 +4,11 @@ I used [this](https://github.com/adafruit/RadioHead) library.
 # Wireing   
 |RFM69||ATmega328|ESP8266|
 |:-:|:-:|:-:|:-:|
-|MISO|--|D12|D12|
+|MISO|--|D12(*2)|D12(*2)|
 |SCK|--|D13|D14|
 |MOSI|--|D11|D13|
 |NSS|--|D4|DO2|
-|DIO0|--|D3|D15|
+|DIO0|--|D3(*2)|D15(*2)|
 |RESET|--|D2|D16|
 |GND|--|GND|GND|
 |VCC|--|3.3V(*1)|3.3V|
