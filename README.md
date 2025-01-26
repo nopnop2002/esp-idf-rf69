@@ -87,7 +87,7 @@ Interrupts are not used in this project.
 ||RF69|cc1101|
 |:-:|:-:|:-:|
 |Manufacturer|Hope Microelectronics|Texas Instrument|
-|Frequency|315/433/868/915MHz|315/433/868/915MHz|
+|Frequency|433/868/915MHz|315/433/868/915MHz|
 |Maximum Payload|64Byte(AES Enable)/255Byte(AES Disable)|64Byte|
 |CRC Length|16bits|16bits|
 |Acknowledgement Payload|No|No|
