@@ -94,21 +94,17 @@ https://github.com/adafruit/RadioHead/tree/master/examples/feather/RadioHead69_R
 
 https://github.com/adafruit/RadioHead/tree/master/examples/feather/RadioHead69_RawDemo_TX
 
-Wireing for ATmega328   
-```
-  #define RFM69_CS      4  // to NSS
-  #define RFM69_INT     3  // to DIO0
-  #define RFM69_RST     2  // to RESET
-  #define LED           13
-```
-
-Wireing for ESP8266   
-```
-  #define RFM69_CS      2  // to NSS
-  #define RFM69_INT     15 // to DIO0
-  #define RFM69_RST     16 // to RESET
-  #define LED           0
-```
+Wireing   
+|RFM69||ATmega328|ESP8266|
+|:-:|:-:|:-:|:-:|:-:|
+|MISO|--|GPIO12|GPIO12|
+|SCK|--|GPIO13|GPIO14|
+|MOSI|--|GPIO11|GPIO13|
+|NSS|--|GPIO4|GPIO2|
+|DIO0|--|GPIO3|GPIO15|
+|RESET|--|GPIO2|GPIO16|
+|GND|--|GND|GND|
+|VCC|--|3.3V|3.3V|
 
 # Screen Shot
 ![ScreenShot](https://user-images.githubusercontent.com/6020549/168998608-ec658a7a-c4f5-4917-bc13-fe72002b1d34.jpg)
