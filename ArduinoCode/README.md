@@ -32,7 +32,7 @@ I used [this](https://www.ti.com/lit/ds/symlink/txs0108e.pdf?ts=1647593549503) f
 ```
 
 - Tx power   
- If you are using a high power RF69 eg RFM69HW, you *must* set a Tx power with the ishighpowermodule flag set like this:
+ If you are using a high power RF69 eg RFM69HW, you __must__ set a Tx power with the ishighpowermodule flag set like this:
 ```
 rf69.setTxPower(20, true);  // range from 14-20 for power, 2nd arg must be true for 69HCW
 ```
