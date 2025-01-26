@@ -27,7 +27,7 @@ This is Radio and MQTT gateway application.
 ### MQTT to Radio   
  Subscribe with MQTT and send to Radio.   
  You can use mosquitto_pub as Publisher.   
- ```mosquitto_pub -h broker.emqx.io -p 1883 -t "/topic/lora/test" -m "test"```
+ ```mosquitto_pub -h broker.emqx.io -p 1883 -t "/topic/radio/test" -m "test"```
 
 ```
             +----------+           +----------+           +----------+           +----------+
@@ -46,7 +46,7 @@ ArduinoCode\Ra01S_RX
 ### Radio to MQTT   
  Receive from Radio and publish as MQTT.   
  You can use mosquitto_sub as Subscriber.   
- ```mosquitto_sub -h broker.emqx.io -p 1883 -t "/topic/lora/test"```
+ ```mosquitto_sub -h broker.emqx.io -p 1883 -t "/topic/radio/test"```
 
 ```
             +----------+           +----------+           +----------+           +----------+
