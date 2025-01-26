@@ -91,7 +91,7 @@ Interrupts are not used in this project.
 |Maximum Payload|64Byte(AES Enable)/255Byte(AES Disable)|64Byte|
 |CRC Length|16bits|16bits|
 |Acknowledgement Payload|No|No|
-|Available Modulation format|FSK/OOK|2-FSK/4-FSK/GFSK/ASK/OOK/MSK|
+|Available Modulation format|FSK/GFSK/MSK/GMSJ/OOK|2-FSK/4-FSK/GFSK/ASK/OOK/MSK|
 
-AES is AES encryption/decryption.   
-This project uses AES.  
+AES is AES-128 encryption/decryption.   
+This project uses AES-128 encryption/decryption.  
