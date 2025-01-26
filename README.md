@@ -86,7 +86,7 @@ Interrupts are not used in this project.
 # Comparison of RF96 and cc1101
 ||RF96|cc1101|
 |:-:|:-:|:-:|
-|Manufacturer|HOPE MICROELECTRONICS|Texas Instrument|
+|Manufacturer|Hope Microelectronics|Texas Instrument|
 |Frequency|315/433/868/915MHz|315/433/868/915MHz|
 |Maximum Payload|64Byte(AES Enable)/255Byte(AES Disable)|64Byte|
 |CRC Length|16bits|16bits|
