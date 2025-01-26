@@ -10,12 +10,10 @@ I tested with these.
 # Foot pattern
 RFM69CW/HCW has the same foot pattern as ESP12.   
 Therefore, a pitch conversion PCB for ESP12 can be used.   
-
 ![RFM69CW](https://user-images.githubusercontent.com/6020549/168983702-3d0e8cac-add8-4906-bbfe-22eeee576ff7.JPG)
 ![RFM69HCW](https://user-images.githubusercontent.com/6020549/168983707-4bb3170a-47ae-4225-b87a-3fc5cc2c07ab.JPG)
 
 RFM69W/HW does not have the same foot pattern as ESP12.
-
 ![RFM69HW](https://user-images.githubusercontent.com/6020549/168983973-73f21359-21f3-4833-a7ff-dc329faa504f.JPG)
 ![RFM69W](https://user-images.githubusercontent.com/6020549/168983977-bedada69-5722-46fb-839e-37ec77cc2b26.JPG)
 
