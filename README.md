@@ -96,7 +96,7 @@ https://github.com/adafruit/RadioHead/tree/master/examples/feather/RadioHead69_R
 
 Wireing   
 |RFM69||ATmega328|ESP8266|
-|:-:|:-:|:-:|:-:|:-:|
+|:-:|:-:|:-:|:-:|
 |MISO|--|GPIO12|GPIO12|
 |SCK|--|GPIO13|GPIO14|
 |MOSI|--|GPIO11|GPIO13|
