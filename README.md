@@ -88,11 +88,7 @@ http://www.airspayce.com/mikem/arduino/RadioHead/classRH__RF69.html
 Interrupts are not used in this project.
 
 # Communication with Arduino Environment
-I used these example.
-
-https://github.com/adafruit/RadioHead/tree/master/examples/feather/RadioHead69_RawDemo_RX
-
-https://github.com/adafruit/RadioHead/tree/master/examples/feather/RadioHead69_RawDemo_TX
+I used [this](https://github.com/adafruit/RadioHead) library.   
 
 Wireing   
 |RFM69||ATmega328|ESP8266|
@@ -105,8 +101,5 @@ Wireing
 |RESET|--|GPIO2|GPIO16|
 |GND|--|GND|GND|
 |VCC|--|3.3V|3.3V|
-
-# Screen Shot
-![ScreenShot](https://user-images.githubusercontent.com/6020549/168998608-ec658a7a-c4f5-4917-bc13-fe72002b1d34.jpg)
 
 
