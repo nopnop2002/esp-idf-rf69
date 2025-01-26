@@ -83,8 +83,8 @@ http://www.airspayce.com/mikem/arduino/RadioHead/classRH__RF69.html
 
 Interrupts are not used in this project.
 
-# Comparison of RF96 and cc1101
-||RF96|cc1101|
+# Comparison of RF69 and cc1101
+||RF69|cc1101|
 |:-:|:-:|:-:|
 |Manufacturer|Hope Microelectronics|Texas Instrument|
 |Frequency|315/433/868/915MHz|315/433/868/915MHz|
