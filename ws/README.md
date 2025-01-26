@@ -57,7 +57,7 @@ You can use ws-server.py as WS Server.
             |           |           |           |           |           |
 ==(Radio)==>|    RF69   |--(SPI)--->|   ESP32   |-(Socket)->| WS Server |
             |           |           |           |           |           |
-            +-----------+           +-----------+           +-----------+```
+            +-----------+           +-----------+           +-----------+
 ```
 
 ![Image](https://github.com/user-attachments/assets/3fc6154b-0a33-4813-adfd-440ab44feea1)
