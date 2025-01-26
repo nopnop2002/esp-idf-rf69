@@ -1,6 +1,6 @@
 # esp-idf-rf69
-RFM69 ISM Transceiver driver for esp-idf.
-
+RFM69 ISM Transceiver driver for esp-idf.   
+The RFM69 is a highly integrated RF transceiver capable of operation over a wide frequency range, including the 433, 868 and 915 MHz license-free ISM (Industry Scientific and Medical) frequency bands.   
 I ported from [this](http://www.airspayce.com/mikem/arduino/RadioHead/).
 
 I tested with these.   
