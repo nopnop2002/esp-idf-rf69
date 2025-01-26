@@ -23,3 +23,17 @@ RFM69 is not 5V tolerant.
 You need level shift from 5V to 3.3V.   
 I used [this](https://www.ti.com/lit/ds/symlink/txs0108e.pdf?ts=1647593549503) for a level shift.   
 
+# Configuration
+
+- Radio frequency
+ Specifies the frequency to be used.
+```
+#define RF69_FREQ 915.0
+```
+
+- Tx power
+ If you are using a high power RF69 eg RFM69HW, you *must* set a Tx power with the ishighpowermodule flag set like this:
+```
+rf69.setTxPower(20, true);  // range from 14-20 for power, 2nd arg must be true for 69HCW
+```
+
