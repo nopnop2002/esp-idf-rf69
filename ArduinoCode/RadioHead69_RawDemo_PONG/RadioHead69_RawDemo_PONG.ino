@@ -133,8 +133,8 @@ void setup()
 void loop() {
  if (rf69.available()) {
     // Should be a message for us now   
-    uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
-    uint8_t len = sizeof(buf);
+    uint8_t buf[RH_RF69_MAX_MESSAGE_LEN+1];
+    uint8_t len = RH_RF69_MAX_MESSAGE_LEN;
     if (rf69.recv(buf, &len)) {
       if (!len) return;
       buf[len] = 0;
