@@ -41,7 +41,7 @@ This is Radio and MQTT gateway application.
 
 Communicate with Arduino Environment.   
 Run this sketch.   
-ArduinoCode\Ra01S_RX   
+ArduinoCode\RadioHead69_RawDemo_RX   
 
 ### Radio to MQTT   
  Receive from Radio and publish as MQTT.   
@@ -60,7 +60,7 @@ ArduinoCode\Ra01S_RX
 
 Communicate with Arduino Environment.   
 Run this sketch.   
-ArduinoCode\Ra01S_TX   
+ArduinoCode\RadioHead69_RawDemo_TX   
 
 ### Select Transport   
 This project supports TCP,SSL/TLS,WebSocket and WebSocket Secure Port.   
