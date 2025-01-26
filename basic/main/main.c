@@ -22,7 +22,7 @@ void tx_task(void *pvParameter)
 	int packetnum = 0;	// packet counter, we increment per xmission
 	while(1) {
 
-		char radiopacket[64] = "Hello World #";
+		char radiopacket[RH_RF69_MAX_MESSAGE_LEN] = "Hello World #";
 		sprintf(radiopacket, "Hello World #%d", packetnum++);
 		ESP_LOGI(pcTaskGetName(0), "Sending %s", radiopacket);
   
