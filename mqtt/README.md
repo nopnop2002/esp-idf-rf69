@@ -65,6 +65,7 @@ ArduinoCode\RadioHead69_RawDemo_TX
 ### Select Transport   
 This project supports TCP,SSL/TLS,WebSocket and WebSocket Secure Port.   
 - Using TCP Port.   
+ TCP Port uses the MQTT protocol.   
  ![Image](https://github.com/user-attachments/assets/2df27b89-b69b-43bc-b688-83b1332396b2)
 
 - Using SSL/TLS Port.   
