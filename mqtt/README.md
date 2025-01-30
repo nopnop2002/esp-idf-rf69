@@ -24,6 +24,7 @@ Set the information of your access point.
 ![Image](https://github.com/user-attachments/assets/e8a79ecc-4542-4ea3-a272-e8f6290cba88)
 
 ## Radio Setting
+Set the wireless communication direction.   
 ![Image](https://github.com/user-attachments/assets/02c78d35-6b42-4c1b-9a64-9062356d4348)
 
 ### MQTT to Radio   
