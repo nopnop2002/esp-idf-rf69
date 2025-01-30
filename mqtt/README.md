@@ -24,6 +24,7 @@ Set the information of your access point.
 ![Image](https://github.com/user-attachments/assets/e8a79ecc-4542-4ea3-a272-e8f6290cba88)
 
 ## Radio Setting
+![Image](https://github.com/user-attachments/assets/02c78d35-6b42-4c1b-9a64-9062356d4348)
 
 ### MQTT to Radio   
  Subscribe with MQTT and send to Radio.   
@@ -37,8 +38,6 @@ Set the information of your access point.
             |          |           |          |           |          |           |          |
             +----------+           +----------+           +----------+           +----------+
 ```
-
-![Image](https://github.com/user-attachments/assets/02c78d35-6b42-4c1b-9a64-9062356d4348)
 
 Communicate with Arduino Environment.   
 Run this sketch.   
@@ -56,8 +55,6 @@ ArduinoCode\RadioHead69_RawDemo_RX
             |          |           |          |           |          |           |          |
             +----------+           +----------+           +----------+           +----------+
 ```
-
-![Image](https://github.com/user-attachments/assets/9d672fa5-131d-4fd3-a8f8-95ade4a22303)
 
 Communicate with Arduino Environment.   
 Run this sketch.   
