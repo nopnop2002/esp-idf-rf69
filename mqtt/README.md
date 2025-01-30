@@ -62,19 +62,10 @@ ArduinoCode\RadioHead69_RawDemo_TX
 
 ## Broker Setting
 Set the information of your MQTT broker.   
-
-### Specifying an MQTT Broker   
-You can specify your MQTT broker in one of the following ways:   
-- IP address   
- ```192.168.10.20```   
-- mDNS host name   
- ```mqtt-broker.local```   
-- Fully Qualified Domain Name   
- ```broker.emqx.io```
+![Image](https://github.com/user-attachments/assets/7840d961-bbcc-44d7-a509-4f774cd6ec2c)
 
 ### Select Transport   
 This project supports TCP,SSL/TLS,WebSocket and WebSocket Secure Port.   
-![Image](https://github.com/user-attachments/assets/7840d961-bbcc-44d7-a509-4f774cd6ec2c)
 
 - Using TCP Port.   
  TCP Port uses the MQTT protocol.   
@@ -98,6 +89,15 @@ chmod 777 getpem.sh
 
 WebSocket/WebSocket Secure Port may differ depending on the broker used.   
 If you use a different MQTT server than the default, you will need to change the port number from the default.   
+
+### Specifying an MQTT Broker   
+You can specify your MQTT broker in one of the following ways:   
+- IP address   
+ ```192.168.10.20```   
+- mDNS host name   
+ ```mqtt-broker.local```   
+- Fully Qualified Domain Name   
+ ```broker.emqx.io```
 
 ### Select MQTT Protocol   
 This project supports MQTT Protocol V3.1.1/V5.   
