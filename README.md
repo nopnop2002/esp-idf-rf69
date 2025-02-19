@@ -83,6 +83,32 @@ http://www.airspayce.com/mikem/arduino/RadioHead/classRH__RF69.html
 
 Interrupts are not used in this project.
 
+# How to use this component in your project   
+Create idf_component.yml in the same directory as main.c.   
+```
+YourProject --+-- CMakeLists.txt
+              +-- main --+-- main.c
+                         +-- CMakeLists.txt
+                         +-- idf_component.yml
+```
+
+Contents of idf_component.yml.
+```
+dependencies:
+  nopnop2002/rf69:
+    path: components/rf69/
+    git: https://github.com/nopnop2002/esp-idf-rf69.git
+```
+
+When you build a projects esp-idf will automaticly fetch repository to managed_components dir and link with your code.   
+```
+YourProject --+-- CMakeLists.txt
+              +-- main --+-- main.c
+              |          +-- CMakeLists.txt
+              |          +-- idf_component.yml
+              +-- managed_components ----- nopnop2002__rf69
+```
+
 # Comparison of RF69 and cc1101
 ||RF69|cc1101|
 |:-:|:-:|:-:|
