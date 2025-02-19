@@ -26,14 +26,14 @@ I used [this](https://www.ti.com/lit/ds/symlink/txs0108e.pdf?ts=1647593549503) f
 # Configuration
 
 - Radio frequency   
- Specifies the frequency to be used.
-```
-#define RF69_FREQ 915.0
-```
+	Specifies the frequency to be used.
+	```
+	#define RF69_FREQ 915.0
+	```
 
 - Tx power   
- If you are using a high power RF69 eg RFM69HW, you __must__ set a Tx power with the ishighpowermodule flag set like this:
-```
-rf69.setTxPower(20, true);  // range from 14-20 for power, 2nd arg must be true for 69HCW
-```
+	If you are using a high power RF69 eg RFM69HW, you __must__ set a Tx power with the ishighpowermodule flag set like this:
+	```
+	rf69.setTxPower(20, true);  // range from 14-20 for power, 2nd arg must be true for 69HCW
+	```
 
