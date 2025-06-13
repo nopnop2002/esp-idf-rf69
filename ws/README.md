@@ -20,9 +20,11 @@ This is RF69 and WebSocket gateway application.
 ![Image](https://github.com/user-attachments/assets/1602d47e-5452-4bf4-8038-fa8663f0ab67)
 
 ## WiFi Setting
+Set the information of your access point.   
 ![Image](https://github.com/user-attachments/assets/dc45ce85-2a4c-4f81-9e15-6d49c190840a)
 
 ## Radioi Setting
+Set the wireless communication direction.   
 
 ### WS to Radio
 Subscribe with WebSocket and send to Radio.   
