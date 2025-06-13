@@ -18,13 +18,13 @@ static const char *TAG = "MAIN";
 #if CONFIG_PRIMARY
 void tx_task(void *pvParameter)
 {
-	ESP_LOGI(pcTaskGetName(0), "Start");
+	ESP_LOGI(pcTaskGetName(NULL), "Start");
 	int packetnum = 0;	// packet counter, we increment per xmission
 	while(1) {
 
 		char radiopacket[RH_RF69_MAX_MESSAGE_LEN] = "Hello World #";
 		sprintf(radiopacket, "Hello World #%d", packetnum++);
-		ESP_LOGI(pcTaskGetName(0), "Sending %s", radiopacket);
+		ESP_LOGI(pcTaskGetName(NULL), "Sending %s", radiopacket);
   
 		// Send a message!
 		send((uint8_t *)radiopacket, strlen(radiopacket));
@@ -37,12 +37,12 @@ void tx_task(void *pvParameter)
 		if (waitAvailableTimeout(1000))	{
 			// Should be a reply message for us now   
 			if (recv(buf, &len)) {
-				ESP_LOGI(pcTaskGetName(0), "Got a reply: %s", (char*)buf);
+				ESP_LOGI(pcTaskGetName(NULL), "Got a reply: %s", (char*)buf);
 			} else {
-				ESP_LOGE(pcTaskGetName(0), "Receive failed");
+				ESP_LOGE(pcTaskGetName(NULL), "Receive failed");
 			}
 		} else {
-			ESP_LOGE(pcTaskGetName(0), "No reply, is another RFM69 listening?");
+			ESP_LOGE(pcTaskGetName(NULL), "No reply, is another RFM69 listening?");
 		}
 		vTaskDelay(1000/portTICK_PERIOD_MS);
 	} // end while
@@ -55,7 +55,7 @@ void tx_task(void *pvParameter)
 #if CONFIG_SECONDARY
 void rx_task(void *pvParameter)
 {
-	ESP_LOGI(pcTaskGetName(0), "Start");
+	ESP_LOGI(pcTaskGetName(NULL), "Start");
 
 	while(1) {
 
@@ -66,18 +66,18 @@ void rx_task(void *pvParameter)
 			if (recv(buf, &len)) {
 				if (!len) continue;
 				buf[len] = 0;
-				ESP_LOGI(pcTaskGetName(0), "Received [%d]:%s", len, (char*)buf);
-				ESP_LOGI(pcTaskGetName(0), "RSSI: %d", lastRssi());
+				ESP_LOGI(pcTaskGetName(NULL), "Received [%d]:%s", len, (char*)buf);
+				ESP_LOGI(pcTaskGetName(NULL), "RSSI: %d", lastRssi());
 
 				if (strstr((char *)buf, "Hello World")) {
 					// Send a reply!
 					uint8_t data[] = "And hello back to you";
 					send(data, sizeof(data));
 					waitPacketSent();
-					ESP_LOGI(pcTaskGetName(0), "Sent a reply");
+					ESP_LOGI(pcTaskGetName(NULL), "Sent a reply");
 				}
 			} else {
-				ESP_LOGE(pcTaskGetName(0), "Receive failed");
+				ESP_LOGE(pcTaskGetName(NULL), "Receive failed");
 			} // end recv
 		} // end available
 		vTaskDelay(1);
