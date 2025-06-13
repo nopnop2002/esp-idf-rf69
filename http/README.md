@@ -21,10 +21,11 @@ This is RF69 and HTTP gateway application.
 ![Image](https://github.com/user-attachments/assets/e101c4b4-52de-495d-9091-239ddc1e6b81)
 
 ## WiFi Setting
+Set the information of your access point.   
 ![Image](https://github.com/user-attachments/assets/14626be6-4450-4bb3-8cfb-38ed8d273ab9)
 
-
 ## Radioi Setting
+Set the wireless communication direction.   
 
 ### HTTP to Radio
 Subscribe with HTTP and send to Radio.   
