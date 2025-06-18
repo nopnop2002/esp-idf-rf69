@@ -19,25 +19,23 @@ static const char *TAG = "MAIN";
 void tx_task(void *pvParameter)
 {
 	ESP_LOGI(pcTaskGetName(NULL), "Start");
-	int packetnum = 0;	// packet counter, we increment per xmission
+	uint8_t txBuf[RH_RF69_MAX_MESSAGE_LEN];
+	uint8_t rxBuf[RH_RF69_MAX_MESSAGE_LEN];
+	int packetnum = 0; // packet counter, we increment per xmission
 	while(1) {
+		uint8_t txLen = sprintf((char *)txBuf, "Hello World #%d", packetnum++);
+		ESP_LOGI(pcTaskGetName(NULL), "Sending %s", txBuf);
 
-		char radiopacket[RH_RF69_MAX_MESSAGE_LEN] = "Hello World #";
-		sprintf(radiopacket, "Hello World #%d", packetnum++);
-		ESP_LOGI(pcTaskGetName(NULL), "Sending %s", radiopacket);
-  
-		// Send a message!
-		send((uint8_t *)radiopacket, strlen(radiopacket));
+		// Send a message
+		send(txBuf, txLen);
 		waitPacketSent();
 
 		// Now wait for a reply
-		uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
-		uint8_t len = sizeof(buf);
-
+		uint8_t rxLen = sizeof(rxBuf);
 		if (waitAvailableTimeout(1000))	{
 			// Should be a reply message for us now   
-			if (recv(buf, &len)) {
-				ESP_LOGI(pcTaskGetName(NULL), "Got a reply: %s", (char*)buf);
+			if (recv(rxBuf, &rxLen)) {
+				ESP_LOGI(pcTaskGetName(NULL), "Got a reply: %s", (char*)rxBuf);
 			} else {
 				ESP_LOGE(pcTaskGetName(NULL), "Receive failed");
 			}
@@ -56,23 +54,21 @@ void tx_task(void *pvParameter)
 void rx_task(void *pvParameter)
 {
 	ESP_LOGI(pcTaskGetName(NULL), "Start");
+	uint8_t rxBuf[RH_RF69_MAX_MESSAGE_LEN];
+	uint8_t txBuf[] = "And hello back to you";
 
 	while(1) {
-
 		if (available()) {
 			// Should be a message for us now	
-			uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
-			uint8_t len = sizeof(buf);
-			if (recv(buf, &len)) {
-				if (!len) continue;
-				buf[len] = 0;
-				ESP_LOGI(pcTaskGetName(NULL), "Received [%d]:%s", len, (char*)buf);
+			uint8_t rxLen = sizeof(rxBuf);
+			if (recv(rxBuf, &rxLen)) {
+				if (!rxLen) continue;
+				ESP_LOGI(pcTaskGetName(NULL), "Received: [%.*s]", rxLen, (char*)rxBuf);
 				ESP_LOGI(pcTaskGetName(NULL), "RSSI: %d", lastRssi());
 
-				if (strstr((char *)buf, "Hello World")) {
-					// Send a reply!
-					uint8_t data[] = "And hello back to you";
-					send(data, sizeof(data));
+				if (strstr((char *)rxBuf, "Hello World")) {
+					// Send a reply
+					send(txBuf, sizeof(txBuf));
 					waitPacketSent();
 					ESP_LOGI(pcTaskGetName(NULL), "Sent a reply");
 				}
