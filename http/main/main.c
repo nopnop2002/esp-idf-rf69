@@ -181,15 +181,15 @@ void convert_mdns_host(char * from, char * to)
 
 void initialize_mdns(void)
 {
-    //initialize mDNS
-    ESP_ERROR_CHECK( mdns_init() );
-    //set mDNS hostname (required if you want to advertise services)
-    ESP_ERROR_CHECK( mdns_hostname_set(CONFIG_MDNS_HOSTNAME) );
-    ESP_LOGI(TAG, "mdns hostname set to: [%s]", CONFIG_MDNS_HOSTNAME);
+	//initialize mDNS
+	ESP_ERROR_CHECK( mdns_init() );
+	//set mDNS hostname (required if you want to advertise services)
+	ESP_ERROR_CHECK( mdns_hostname_set(CONFIG_MDNS_HOSTNAME) );
+	ESP_LOGI(TAG, "mdns hostname set to: [%s]", CONFIG_MDNS_HOSTNAME);
 
 #if 0
-    //set default mDNS instance name
-    ESP_ERROR_CHECK( mdns_instance_name_set("ESP32 with mDNS") );
+	//set default mDNS instance name
+	ESP_ERROR_CHECK( mdns_instance_name_set("ESP32 with mDNS") );
 #endif
 }
 
@@ -197,11 +197,11 @@ void initialize_mdns(void)
 void tx_task(void *pvParameter)
 {
 	ESP_LOGI(pcTaskGetName(NULL), "Start");
-	char packetData[RH_RF69_MAX_MESSAGE_LEN];
+	uint8_t packetData[xItemSize];
 	while(1) {
-        size_t packetLength = xMessageBufferReceive(xMessageBufferRecv, packetData, sizeof(packetData), portMAX_DELAY);
+		size_t packetLength = xMessageBufferReceive(xMessageBufferRecv, packetData, sizeof(packetData), portMAX_DELAY);
 		ESP_LOGI(pcTaskGetName(NULL), "packetLength=%d", packetLength);
-		send((uint8_t *)packetData, (uint8_t)packetLength);
+		send(packetData, (uint8_t)packetLength);
 		waitPacketSent();
 	} // end while
 
@@ -214,16 +214,14 @@ void tx_task(void *pvParameter)
 void rx_task(void *pvParameter)
 {
 	ESP_LOGI(pcTaskGetName(NULL), "Start");
-
-	uint8_t packetData[RH_RF69_MAX_MESSAGE_LEN];
+	uint8_t packetData[xItemSize];
 	while(1) {
 		if (available()) {
 			// Should be a message for us now	
 			uint8_t packetLength = sizeof(packetData);
 			if (recv(packetData, &packetLength)) {
 				if (!packetLength) continue;
-				packetData[packetLength] = 0;
-				ESP_LOGI(pcTaskGetName(NULL), "Received [%d]:%s", packetLength, (char*)packetData);
+				ESP_LOGI(pcTaskGetName(NULL), "Received: [%.*s]", packetLength, (char*)packetData);
 				ESP_LOGI(pcTaskGetName(NULL), "RSSI: %d", lastRssi());
 				size_t spacesAvailable = xMessageBufferSpacesAvailable( xMessageBufferTrans );
 				ESP_LOGI(pcTaskGetName(NULL), "spacesAvailable=%d", spacesAvailable);
@@ -245,25 +243,25 @@ void http_server(void *pvParameters);
 
 void app_main()
 {
-    // Initialize NVS
-    esp_err_t ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        ESP_ERROR_CHECK(nvs_flash_erase());
-        ret = nvs_flash_init();
-    }
-    ESP_ERROR_CHECK(ret);
+	// Initialize NVS
+	esp_err_t ret = nvs_flash_init();
+	if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+		ESP_ERROR_CHECK(nvs_flash_erase());
+		ret = nvs_flash_init();
+	}
+	ESP_ERROR_CHECK(ret);
 
-    // Initialize WiFi
-    ESP_ERROR_CHECK(wifi_init_sta());
+	// Initialize WiFi
+	ESP_ERROR_CHECK(wifi_init_sta());
 
-    // Create MessageBuffer
-    xMessageBufferTrans = xMessageBufferCreate(xBufferSizeBytes);
-    configASSERT( xMessageBufferTrans );
-    xMessageBufferRecv = xMessageBufferCreate(xBufferSizeBytes);
-    configASSERT( xMessageBufferRecv );
+	// Create MessageBuffer
+	xMessageBufferTrans = xMessageBufferCreate(xBufferSizeBytes);
+	configASSERT( xMessageBufferTrans );
+	xMessageBufferRecv = xMessageBufferCreate(xBufferSizeBytes);
+	configASSERT( xMessageBufferRecv );
 
-    // Initialize mDNS
-    initialize_mdns();
+	// Initialize mDNS
+	initialize_mdns();
 
 	// Initialize Radio
 	if (!init()) {
@@ -304,12 +302,12 @@ void app_main()
 		0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
 	setEncryptionKey(key);
 
-    // Get the local IP address
-    esp_netif_ip_info_t ip_info;
-    ESP_ERROR_CHECK(esp_netif_get_ip_info(esp_netif_get_handle_from_ifkey("WIFI_STA_DEF"), &ip_info));
-    char cparam0[64];
-    sprintf(cparam0, IPSTR, IP2STR(&ip_info.ip));
-    ESP_LOGI(TAG, "cparam0=[%s]", cparam0);
+	// Get the local IP address
+	esp_netif_ip_info_t ip_info;
+	ESP_ERROR_CHECK(esp_netif_get_ip_info(esp_netif_get_handle_from_ifkey("WIFI_STA_DEF"), &ip_info));
+	char cparam0[64];
+	sprintf(cparam0, IPSTR, IP2STR(&ip_info.ip));
+	ESP_LOGI(TAG, "cparam0=[%s]", cparam0);
 
 #if CONFIG_SENDER
 	xTaskCreate(&tx_task, "TX", 1024*3, NULL, 5, NULL);
@@ -320,7 +318,7 @@ void app_main()
 	xTaskCreate(&http_client, "HTTP_CLIENT", 1024*4, NULL, 5, NULL);
 #endif
 
-    while(1) {
-        vTaskDelay(10);
-    }
+	while(1) {
+		vTaskDelay(10);
+	}
 }
