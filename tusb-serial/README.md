@@ -39,7 +39,7 @@ ESP32-S2/S3 BOARD          USB CONNECTOR
 
 
 # Configuration
-![config-top](https://github.com/user-attachments/assets/64725b68-2185-4848-9e90-34f47decb81d)
+![Image](https://github.com/user-attachments/assets/b04e82a1-2240-4203-9438-abad30351924)
 
 ### USB to Radio
 Receive from USB and send to Radio.   
