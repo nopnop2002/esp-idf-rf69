@@ -37,6 +37,8 @@ MessageBufferHandle_t xMessageBufferRecv;
 
 // The total number of bytes (not single messages) the message buffer will be able to hold at any one time.
 size_t xBufferSizeBytes = 1024;
+// The size, in bytes, required to hold each item in the message,
+size_t xItemSize = RH_RF69_MAX_MESSAGE_LEN; // Maximum Payload size of RF69 is RH_RF69_MAX_MESSAGE_LEN
 
 static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
 {
