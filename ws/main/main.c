@@ -197,11 +197,11 @@ void initialize_mdns(void)
 void tx_task(void *pvParameter)
 {
 	ESP_LOGI(pcTaskGetName(NULL), "Start");
-	char packetData[RH_RF69_MAX_MESSAGE_LEN];
+	uint8_t packetData[xItemSize];
 	while(1) {
 		size_t packetLength = xMessageBufferReceive(xMessageBufferRecv, packetData, sizeof(packetData), portMAX_DELAY);
 		ESP_LOGI(pcTaskGetName(NULL), "packetLength=%d", packetLength);
-		send((uint8_t *)packetData, (uint8_t)packetLength);
+		send(packetData, (uint8_t)packetLength);
 		waitPacketSent();
 	} // end while
 
@@ -214,16 +214,14 @@ void tx_task(void *pvParameter)
 void rx_task(void *pvParameter)
 {
 	ESP_LOGI(pcTaskGetName(NULL), "Start");
-
-	uint8_t packetData[RH_RF69_MAX_MESSAGE_LEN];
+	uint8_t packetData[xItemSize];
 	while(1) {
 		if (available()) {
 			// Should be a message for us now	
 			uint8_t packetLength = sizeof(packetData);
 			if (recv(packetData, &packetLength)) {
 				if (!packetLength) continue;
-				packetData[packetLength] = 0;
-				ESP_LOGI(pcTaskGetName(NULL), "Received [%d]:%s", packetLength, (char*)packetData);
+				ESP_LOGI(pcTaskGetName(NULL), "Received: [%.*s]", packetLength, (char*)packetData);
 				ESP_LOGI(pcTaskGetName(NULL), "RSSI: %d", lastRssi());
 				size_t spacesAvailable = xMessageBufferSpacesAvailable( xMessageBufferTrans );
 				ESP_LOGI(pcTaskGetName(NULL), "spacesAvailable=%d", spacesAvailable);
