@@ -232,7 +232,7 @@ void rx_task(void *pvParameter)
 				}
 			} // end recv
 		} // end available
-		vTaskDelay(1);
+		vTaskDelay(1); // Avoid WatchDog alerts
 	} // end while
 	vTaskDelete( NULL );
 }
