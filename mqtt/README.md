@@ -41,8 +41,7 @@ Set the wireless communication direction.
 ```
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\RadioHead69_RawDemo_RX   
+I tested it with [this](https://github.com/nopnop2002/esp-idf-rf69/tree/main/ArduinoCode/RadioHead69_RawDemo_RX).   
 
 ### Radio to MQTT   
  Receive from Radio and publish as MQTT.   
@@ -58,8 +57,7 @@ ArduinoCode\RadioHead69_RawDemo_RX
 ```
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\RadioHead69_RawDemo_TX   
+I tested it with [this](https://github.com/nopnop2002/esp-idf-rf69/tree/main/ArduinoCode/RadioHead69_RawDemo_TX).   
 
 ## Broker Setting
 Set the information of your MQTT broker.   
