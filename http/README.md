@@ -44,9 +44,7 @@ You can use curl as HTTP Client.
 ![Image](https://github.com/user-attachments/assets/3275e7a9-a8db-4b84-a960-3d1746e2f247)
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\RadioHead69_RawDemo_RX   
-
+I tested it with [this](https://github.com/nopnop2002/esp-idf-rf69/tree/main/ArduinoCode/RadioHead69_RawDemo_RX).   
 
 ### Radio to HTTP
 Receive from Radio and publish as HTTP.   
@@ -64,11 +62,8 @@ You can use nc(netcat) as HTTP Server.
 
 ![Image](https://github.com/user-attachments/assets/f650ae3d-09c3-48d4-9c5f-00d9795ef424)
 
-
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\RadioHead69_RawDemo_TX   
-
+I tested it with [this](https://github.com/nopnop2002/esp-idf-rf69/tree/main/ArduinoCode/RadioHead69_RawDemo_TX).   
 
 ### Specifying an HTTP Server   
 You can specify your HTTP Server in one of the following ways:   
