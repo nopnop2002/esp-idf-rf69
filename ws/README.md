@@ -43,9 +43,7 @@ You can use ws-client.py as WS Client.
 ![Image](https://github.com/user-attachments/assets/e8cfaf3a-f97e-4d07-9c0f-c561fde4eaf2)
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\RadioHead69_RawDemo_RX   
-
+I tested it with [this](https://github.com/nopnop2002/esp-idf-rf69/tree/main/ArduinoCode/RadioHead69_RawDemo_RX).   
 
 ### Radio to WS
 Receive from Radio and publish as WebSocket.   
@@ -65,9 +63,7 @@ You can use ws-server.py as WS Server.
 ![Image](https://github.com/user-attachments/assets/3fc6154b-0a33-4813-adfd-440ab44feea1)
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\RadioHead69_RawDemo_TX   
-
+I tested it with [this](https://github.com/nopnop2002/esp-idf-rf69/tree/main/ArduinoCode/RadioHead69_RawDemo_TX).   
 
 ### Specifying an WebSocket Server   
 You can specify your WebSocket Server in one of the following ways:   
