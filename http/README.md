@@ -24,7 +24,7 @@ This is RF69 and HTTP gateway application.
 Set the information of your access point.   
 ![Image](https://github.com/user-attachments/assets/14626be6-4450-4bb3-8cfb-38ed8d273ab9)
 
-## Radioi Setting
+## Radio Setting
 Set the wireless communication direction.   
 
 ### HTTP to Radio

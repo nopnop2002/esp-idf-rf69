@@ -23,7 +23,7 @@ This is RF69 and WebSocket gateway application.
 Set the information of your access point.   
 ![Image](https://github.com/user-attachments/assets/dc45ce85-2a4c-4f81-9e15-6d49c190840a)
 
-## Radioi Setting
+## Radio Setting
 Set the wireless communication direction.   
 
 ### WS to Radio
